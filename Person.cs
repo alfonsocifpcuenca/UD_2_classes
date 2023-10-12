@@ -17,6 +17,8 @@
             }
         }
 
+        public PersonState State = PersonState.Idle;
+
         // Declaramos un constructor, y le pasamos por parámetro el nombre y los puntos de vida iniciales
         public Person(string name, int pointsOfLife)
         {
@@ -34,16 +36,27 @@
         // Declaramos el método público Attack para que pueda atacar a otra Person, y establecemos los puntos de ataque
         public void Attack(Person attackedPerson, int attackPoints)
         {
+            this.State = PersonState.Attacking;
+
             // Mostramos el ataque a `personAttacked`
             Console.WriteLine($"{this.Name} attack to {attackedPerson.Name} with {attackPoints} attack points");
 
             // Restamos los puntos de vida (attackPoints) a personAttacked mediante el método TakeDamage
             attackedPerson.TakeDamage(attackPoints);
+
+            this.State = PersonState.Idle;
         }
 
         // Declaramos el método publico TakeDamage para que una Person pueda recibir daño
         public void TakeDamage(int pointsOfDamage)
         {
+            if (this.State == PersonState.Defending)
+            {
+                Console.WriteLine($"{this.Name} is defending himself.");
+                this.State = PersonState.Idle;
+                return;
+            }
+            
             // Restamos puntos de vida
             this._pointsOfLife -= pointsOfDamage;
         }

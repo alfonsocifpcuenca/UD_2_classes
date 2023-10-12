@@ -14,6 +14,9 @@
             conan.SayHello();
             aragorn.SayHello();
 
+            // Aragorn se pone en modo defensa
+            aragorn.State = PersonState.Defending;
+
             // Conan ataca a Aragorn con 20 puntos de ataque
             conan.Attack(aragorn, 20);
 
