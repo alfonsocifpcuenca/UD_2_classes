@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UD_2_classes
+﻿namespace UD_2_classes
 {
     public class Person
     {
